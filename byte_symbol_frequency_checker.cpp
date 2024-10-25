@@ -35,12 +35,20 @@ int main(int argc, char* argv[])
         }
 
         float entropy = 0;
+        float probability;
+        float partOfEntropy;
 
         // Вывод Частотного анализа и энтропии
         for (int i = 0; i < 256; ++i)
         {
-            float probability = float(symbols[i]) / countOfSymbols;
-            float partOfEntropy = probability * log2(probability);
+            partOfEntropy = 0;
+            probability = 0;
+
+            probability = float(symbols[i]) / countOfSymbols;
+
+            if(probability != 0)
+                partOfEntropy = probability * log2(probability);
+
             statistic << left << setw(4) << i + 1 << " " << setw(5) << symbols[i] << " " 
                       << left << setw(11) << probability << " " << left << setw(11) << partOfEntropy << endl;
 
